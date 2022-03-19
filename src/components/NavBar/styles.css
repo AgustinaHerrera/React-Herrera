@@ -1,0 +1,32 @@
+nav{
+    background-color:#bfc3cc;
+    position: relative;
+
+}
+
+button {
+    background-color: #bfc3cc;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 3px;
+    padding: 4px 25px 4px 25px;
+    width: 20%;
+    height: auto;
+   
+  }
+  button:hover {
+    transition: all 0.2s;
+    background-color: #c58190;
+  }
+
+  .logo{
+    width: 25%;
+    margin-left: 13px;
+}
