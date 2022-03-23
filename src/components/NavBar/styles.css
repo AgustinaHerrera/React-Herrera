@@ -1,6 +1,9 @@
 nav{
     background-color:#bfc3cc;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 
@@ -29,4 +32,22 @@ button {
   .logo{
     width: 25%;
     margin-left: 13px;
+}
+
+.icon{
+  width: 400px;
+  padding: 10px;
+}
+
+.sub {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  color: #c58190;
+  font-size: 3em;
+  text-align: center;
+  letter-spacing: 0.15em;
+  display: block;
+  margin: 10px 5px;
+  padding: 20px;
+  
 }
