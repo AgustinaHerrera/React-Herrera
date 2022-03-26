@@ -17,12 +17,12 @@ const increment = () => {
 }
 
   return (
-    <div className='container'> 
+    <div class='container'> 
     
-        <button className='btn' onClick={decrement}>-</button>
-            <p className='text' >{count}</p>
-            <button className='btn' onClick={increment}>+</button>
-            <button onClick={() => onAdd(count)} className='btn2' >Agregar al carrito</button>
+        <button class='btn' onClick={decrement}>-</button>
+            <p class='text' >{count}</p>
+            <button class='btn' onClick={increment}>+</button>
+            <button onClick={() => onAdd(count) } class='btn2' >Agregar al carrito</button>
     </div>
 
   )
