@@ -109,3 +109,43 @@ button {
   transition: all 0.2s;
   background-color: #c58190;
 }
+
+.ListGroup {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ItemImg {
+  margin: 10px;
+  width: 260px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CardItem {
+  font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+  margin: 10px;
+  width: 280px;
+  height: auto;
+  background-color: #bfc3cc;
+  border-radius: 5px;
+}
+
+.ItemImg:hover {
+  opacity: 80%;
+  transform: scale(1.2);
+  transition: transition all 1s ease;
+}
+
+.CardItem:hover{
+  color: #c58190;
+}
+
