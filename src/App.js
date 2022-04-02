@@ -1,30 +1,24 @@
-import NavBar from './components/NavBar/NavBar';
-
+import './App.css';
 import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-
-import ItemCount from "./components/ItemCount/ItemCount";
+import NavBar from './components/NavBar/NavBar';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 function App() {
-
-const onAdd = (quantity) =>{
-  console.log(quantity);
-}
-
   return (
-  
     <div className="App">
-      <header className="App-header">
-    
+      <BrowserRouter>
         <NavBar />
-
-       <ItemListContainer greeting="Bienvenido" /> 
-
-       <ItemCount initial = {1} stock={10} onAdd={onAdd} />
-
-      </header>
-      
+        <Routes>
+          <Route path='/' element={<ItemListContainer greeting={'Hola Coder'}/>}/>
+          <Route path='/category/:categoryId' element={<ItemListContainer greeting={'Hola Coder'}/>} />
+          <Route path='/detail/:productId' element={<ItemDetailContainer />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
+
+//React.createElement('Avatar', { className: "Avatar" }, [])
 
 export default App;

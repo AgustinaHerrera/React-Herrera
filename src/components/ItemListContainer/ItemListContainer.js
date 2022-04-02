@@ -1,29 +1,44 @@
-import React from "react"
-
-import { useEffect, useState } from "react"
-
+import React from 'react'
+import { useState, useEffect } from 'react'
 import ItemList from '../ItemList/ItemList'
+import { getProducts } from '../../asyncmock'
+import { useParams } from 'react-router-dom' 
 
-import {getProducts} from '../asynmock'
+const ItemListContainer = () => {
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(true)
 
-const ItemListContainer = ({greeting}) =>{
-const [products, setProducts] = useState ([])
+    const { categoryId } = useParams()
 
-useEffect (()=>{
-    getProducts().then(response =>{
-        setProducts (response)
-    })
-}, [])
+    useEffect(() => {
+        setLoading(true)
+        
+        getProducts(categoryId).then(items => {
+            setProducts(items)
+        }).catch(err  => {
+            console.log(err)
+        }).finally(() => {
+            setLoading(false)
+        })
 
-console.log(products)
-
-return(
-    <div>
-        <h1 className="sub"> {greeting} </h1>
-        <ItemList products = {products} />
-    </div>
-)
-
+        return (() => {
+            setProducts([])
+        })          
+    }, [categoryId])
+    
+    return (
+        <div className="ItemListContainer">
+            {
+                loading ? 
+                    <h1 className='sub' >Cargando...</h1> :  
+                products.length ? 
+                    <ItemList products={products}/> : 
+                    <h1 className='sub' >No se encontraron productos!</h1>
+            }
+        </div>
+    )    
+    
 }
+
 
 export default ItemListContainer

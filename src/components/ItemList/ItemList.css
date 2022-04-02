@@ -4,10 +4,10 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
-
-}
-
-button {
+  
+  }
+  
+  button {
     background-color: #bfc3cc;
     border: none;
     color: white;
@@ -28,18 +28,18 @@ button {
     transition: all 0.2s;
     background-color: #c58190;
   }
-
+  
   .logo{
     width: 25%;
     margin-left: 13px;
-}
-
-.icon{
+  }
+  
+  .icon{
   width: 400px;
   padding: 10px;
-}
-
-.sub {
+  }
+  
+  .sub {
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
   color: #c58190;
@@ -50,9 +50,9 @@ button {
   margin: 10px 5px;
   padding: 20px;
   
-}
-
-.btn {
+  }
+  
+  .btn, .Option {
   background-color: #bfc3cc;
   border: none;
   color: white;
@@ -64,14 +64,31 @@ button {
   border-radius: 5px;
   width: auto;
   height: auto;
- 
-}
-.btn:hover {
+  padding:  5px 30px 5px 30px;
+  
+  }
+  
+  .ActiveOption{
+  background-color: #bfc3cc;
+  border: none;
+  color: #5d2ae7;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bolder;
+  font-size: 16px;
+  border-radius: 5px;
+  width: auto;
+  height: auto;
+  padding:  5px 30px 5px 30px;
+  
+  }
+  .Option:hover {
   transition: all 0.2s;
   background-color: #c58190;
-}
-
-.container{
+  }
+  
+  .container{
   position: relative;
   display: flex;
   justify-content: center;
@@ -79,16 +96,16 @@ button {
   flex-wrap: wrap;
   width: 300px;
   margin: auto;
-}
-
-.text {
+  }
+  
+  .text {
     font-family: "Montserrat", sans-serif;
     font-weight: bold;
     color: #c58190;
     margin: 20px;
-}
-
-.btn2 {
+  }
+  
+  .btn2 {
   background-color: #bfc3cc;
   border: none;
   color: white;
@@ -103,31 +120,31 @@ button {
   padding: 4px 25px 4px 25px;
   width: 260px;
   height: auto;
- 
-}
-.btn2:hover {
+  
+  }
+  .btn2:hover {
   transition: all 0.2s;
   background-color: #c58190;
-}
-
-.ListGroup {
+  }
+  
+  .ListGroup {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-}
-
-.ItemImg {
+  }
+  
+  .ItemImg {
   margin: 10px;
   width: 260px;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.CardItem {
+  }
+  
+  .CardItem {
   font-family: "Montserrat", sans-serif;
     font-weight: bold;
     color: white;
@@ -137,15 +154,11 @@ button {
   height: auto;
   background-color: #bfc3cc;
   border-radius: 5px;
-}
-
-.ItemImg:hover {
+  }
+  
+  .ItemImg:hover {
   opacity: 80%;
   transform: scale(1.2);
   transition: transition all 1s ease;
-}
-
-.CardItem:hover{
-  color: #c58190;
-}
-
+  }
+  

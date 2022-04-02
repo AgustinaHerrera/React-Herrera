@@ -1,0 +1,71 @@
+
+  
+  button {
+    background-color: #bfc3cc;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 3px;
+    padding: 4px 25px 4px 25px;
+    width: 20%;
+    height: auto;
+   
+  }
+  button:hover {
+    transition: all 0.2s;
+    background-color: #c58190;
+  }
+  
+
+  
+  .btn, .Option {
+  background-color: #bfc3cc;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bolder;
+  font-size: 16px;
+  border-radius: 5px;
+  width: auto;
+  height: auto;
+  padding:  5px 30px 5px 30px;
+  
+  }
+  
+
+  
+  .itemImg {
+  margin: 10px;
+  width: 260px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .Item {
+  font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+  margin: 10px;
+  width: 280px;
+  height: auto;
+  background-color: #bfc3cc;
+  border-radius: 5px;
+  }
+  
+  .ItemImg:hover {
+  opacity: 80%;
+  transform: scale(1.2);
+  transition: transition all 1s ease;
+  }
+  

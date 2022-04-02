@@ -1,31 +1,27 @@
-import { useState} from "react";
+import { useState } from 'react'
+import '../NavBar/NavBar.css'
 
-const ItemCount = ({initial=0 , stock, onAdd}) => {
+const ItemCount = ({ initial = 0, stock, onAdd}) => {
+    const [count, setCount] = useState(initial)
 
-  const [count, setCount] = useState(initial);
 
-const decrement = () => {
-  if (count > 0){
-    setCount(count - 1)
-  }
+    const increment = () => {
+        if(count < stock) {
+            setCount(count + 1)
+        }
+    }
+    const decrement = () => {
+        setCount(count - 1)
+    }
+
+    return(
+        <div className='container'>
+            <button  className='btn' onClick={decrement}>-</button>
+            <p>{count}</p>
+            <button className='btn' onClick={increment}>+</button>
+            <button className='btn2' onClick={() => onAdd(count)}>Agregar al carrito</button>
+        </div>
+    )
 }
 
-const increment = () => {
-  if (count < stock){
-    setCount(count + 1)
-}
-}
-
-  return (
-    <div class='container'> 
-    
-        <button class='btn' onClick={decrement}>-</button>
-            <p class='text' >{count}</p>
-            <button class='btn' onClick={increment}>+</button>
-            <button onClick={() => onAdd(count) } class='btn2' >Agregar al carrito</button>
-    </div>
-
-  )
-}
-
-export default ItemCount;
+export default ItemCount
