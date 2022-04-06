@@ -9,12 +9,20 @@
 }
 
 .ContainerItem {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    border-radius: 25px;
-}
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+  width: 280px;
+  height: auto;
+  background-color: #bfc3cc;
+  border-radius: 5px; 
+  position: absolute;
 
+  }
+  
+
+  
 .ItemHeader {
     display: flex;
     justify-content: center;
@@ -53,3 +61,4 @@
     object-fit: cover;
     object-position: center;
 }
+

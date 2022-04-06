@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import '../NavBar/NavBar.css'
 
-const ItemCount = ({ initial = 0, stock, onAdd}) => {
-    const [count, setCount] = useState(initial)
+const ItemCount = ({onAdd}) => {
+    const [count, setCount] = useState(0)
 
 
-    const increment = () => {
-        if(count < stock) {
+    const increment = () => {{
             setCount(count + 1)
         }
     }
@@ -19,7 +18,7 @@ const ItemCount = ({ initial = 0, stock, onAdd}) => {
             <button  className='btn' onClick={decrement}>-</button>
             <p>{count}</p>
             <button className='btn' onClick={increment}>+</button>
-            <button className='btn2' onClick={() => onAdd(count)}>Agregar al carrito</button>
+            <button className='btn2' onClick={()=> onAdd(count)}>Agregar al carrito</button>
         </div>
     )
 }
