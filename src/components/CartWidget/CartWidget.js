@@ -1,11 +1,23 @@
 import cart from '../NavBar/multimedia/carrito-de-compras.png'
+import './CartWidget.css'
+import { useContext } from 'react';
+import { Link } from 'react-router-dom'
+import CartContext from '../../context/CartContext'
 
-const CartWidget = () =>{
-  return (  <div>
-       <img src={cart} alt='carrito de compras' className="logo" />
-       0
-    </div>
-  )
+const CartWidget = () => {
+
+    const { getQuantity } = useContext(CartContext)
+
+    return(
+        <Link to={'/'} className="CartWidget">
+           <img src={cart} alt='carrito de compras' className="CartImg" />
+            { getQuantity() }
+        </Link>
+    );
 }
 
 export default CartWidget
+
+
+
+
