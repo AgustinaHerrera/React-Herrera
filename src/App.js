@@ -1,26 +1,35 @@
-import './App.css';
-import ItemListContainer from './components/ItemListContainer/ItemListContainer';
-import NavBar from './components/NavBar/NavBar';
-import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { CartContextProvider } from './context/CartContext'
-import {NotificationProvider} from './Notification/notification'
+import "./App.css";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
+import NavBar from "./components/NavBar/NavBar";
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { CartContextProvider } from "./context/CartContext";
+import { NotificationProvider } from "./Notification/notification";
 
 function App() {
   return (
     <div className="App">
       <NotificationProvider>
-        <CartContextProvider>          
+        <CartContextProvider>
           <BrowserRouter>
             <NavBar />
             <Routes>
-              <Route path='/' element={<ItemListContainer greeting={'Hola Coder'}/>}/>
-              <Route path='/category/:categoryId' element={<ItemListContainer greeting={'Hola Coder'}/>} />
-              <Route path='/detail/:productId' element={<ItemDetailContainer />} />
+              <Route
+                path="/"
+                element={<ItemListContainer greeting={"Hola Coder"} />}
+              />
+              <Route
+                path="/category/:categoryId"
+                element={<ItemListContainer greeting={"Hola Coder"} />}
+              />
+              <Route
+                path="/detail/:productId"
+                element={<ItemDetailContainer />}
+              />
             </Routes>
           </BrowserRouter>
         </CartContextProvider>
-        </NotificationProvider>
+      </NotificationProvider>
     </div>
   );
 }

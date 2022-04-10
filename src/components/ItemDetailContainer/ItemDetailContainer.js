@@ -1,39 +1,39 @@
-import './ItemDetailContainer.css'
-import { useState, useEffect } from 'react'
-import { getProductById } from '../../asyncmock'
-import ItemDetail from '../ItemDetail/ItemDetail'
-import { useParams } from 'react-router-dom'
+import "./ItemDetailContainer.css";
+import { useState, useEffect } from "react";
+import { getProductById } from "../../asyncmock";
+import ItemDetail from "../ItemDetail/ItemDetail";
+import { useParams } from "react-router-dom";
 
-const ItemDetailContainer = ({addToCart, cart}) => {
-    const [product, setProduct] = useState()
-    const [loading, setLoading] = useState(true)
+const ItemDetailContainer = ({ addToCart, cart }) => {
+  const [product, setProduct] = useState();
+  const [loading, setLoading] = useState(true);
 
-    const { productId } = useParams()
+  const { productId } = useParams();
 
-    useEffect(() => {
-        setLoading(true)
+  useEffect(() => {
+    setLoading(true);
 
-        getProductById(productId).then(prod => {
-            setProduct(prod)
-        }).catch(error => {
-            console.log(error)
-        }).finally(() => {
-            setLoading(false)
-        })
+    getProductById(productId)
+      .then((prod) => {
+        setProduct(prod);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [productId]);
 
-    }, [productId])
-    
+  if (loading) {
+    return <h1 className="sub">Cargando...</h1>;
+  }
 
-    if(loading) {
-        return <h1 className='sub' >Cargando...</h1>
-    }
+  return (
+    <div className="Item">
+      <ItemDetail {...product} addToCart={addToCart} cart={cart} />
+    </div>
+  );
+};
 
-    return(
-        <div className='Item'>
-            <ItemDetail {...product} addToCart= {addToCart} cart={cart} />
-
-        </div>
-    )
-}
-
-export default ItemDetailContainer
+export default ItemDetailContainer;
