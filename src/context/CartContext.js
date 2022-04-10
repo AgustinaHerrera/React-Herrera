@@ -3,43 +3,78 @@ import { createContext, useState } from "react";
 const Context = createContext()
 
 export const CartContextProvider = ({ children }) => {
-    const [cart, setCart] = useState([])
-    console.log(cart)
-    const addItem = (product, quantity) => {
-        const objItemCart = {
-            ...product,
-            quantity
+    const [products, setProducts] = useState([])  
+
+    const addItem = (item, quantity) => {
+
+    const productToAdd = {
+        ...item,
+        quantity
+    } 
+
+    isInCart(item.id) ? updateItemInCart(productToAdd) : addItemToCart(productToAdd) 
+}
+
+const isInCart = (id) => {
+    return products.some(prod => prod.id === id)
+}
+
+const updateItemInCart = (productToAdd) => {
+    const updatedCart = products.map(prod => {
+        if(prod.id === productToAdd.id) {
+            const updatedProduct = {
+                ...prod,
+                quantity: prod.quantity + productToAdd.quantity
+            }
+            return updatedProduct
+        } else {
+            return prod
         }
-        
-        setCart([...cart, objItemCart ])
-    }
+    })
 
+    setProducts(updatedCart)
+}
 
+const addItemToCart = (productToAdd) => {
+    setProducts([...products, productToAdd])
+}
+const removeItem = (id) => {
+    const newProducts = products.filter(prod => prod.id !== id)
+    setProducts(newProducts)
+} 
 
-    const clearCart = () => {
-        setCart([])
-    }
+const getTotal = () => {
+    let total = 0
+    products.forEach(prod => {
+        total = total + prod.price * prod.quantity
+    })
+    return total
+}
+
+const clearCart = () => {
+    setProducts([])
+}
 
     const getQuantity = () => {
         let count = 0
-        cart.forEach(prod => {
+        products.forEach(prod => {
             count = count + prod.quantity
         })
-
         return count
     }
 
     return (
-        <Context.Provider value={{ 
-            cart, 
+        <Context.Provider value={{
             addItem,
+            removeItem,
             clearCart,
-            getQuantity,
-       
-        }}>
+            getTotal,
+            getQuantity
+            }}>
             {children}
         </Context.Provider>
-    )
+
+    );
 }
 
 export default Context
