@@ -1,28 +1,26 @@
-import {useState, useContext} from 'react'
+import { useState, useContext } from 'react' 
+import { Link } from 'react-router-dom'
 import ItemCount from '../ItemCount/ItemCount'
 import './ItemDetail.css'
 import CartContext from '../../context/CartContext'
 import { useNotification } from '../../Notification/notification'
-import { Link } from 'react-router-dom'
-
 
 const ItemDetail = ({ id, name, img, category, description, price, stock}) => {
-const [quantity, setQuantity] = useState (0)
-const {addItem}=useContext(CartContext)
-const { setNotification } = useNotification()
+    const [quantity, setQuantity] = useState(0)
 
-    const handleOnAdd = (count) =>{
+    const { addItem } = useContext(CartContext)
+    const { setNotification } = useNotification()
 
-        setQuantity(count)  
-
-        addItem ({id, name, price}, count)
-
-        setNotification ('Sucsess', 'Se agregaron correctamente los productos al carrito')
-
+    const handleOnAdd = (count) => {
+        console.log('agregue al carrito')
+        setQuantity(count)
+        addItem({ id, name, price}, count)
+        setNotification('success', 'Se agregaron correctamente los productos al carrito')
     }
-    return (
         
-        <article className="ContainerItem">
+
+    return (
+        <article className="CardItem">
             <header className="Header">
                 <h2 className="text">
                     {name}
@@ -39,14 +37,13 @@ const { setNotification } = useNotification()
                     Descripción: {description}
                 </p>
                 <p className="Info">
-                    Precio: ${price}
+                    Precio: {price}
                 </p>
             </section>           
             <footer className='ItemFooter'>
-            {quantity === 0 ? <ItemCount onAdd={handleOnAdd}/> : <Link to='/Cart' className='Option'>Ir al carrito</Link>}
+                {quantity === 0 ? <ItemCount onAdd={handleOnAdd}/> : <Link to='/cart' className='Option'>Ir al carrito</Link>}
                 
             </footer>
-           
         </article>
     )
 }

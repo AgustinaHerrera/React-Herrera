@@ -1,39 +1,42 @@
-import "./ItemDetailContainer.css";
-import { useState, useEffect } from "react";
-import { getProductById } from "../../asyncmock";
-import ItemDetail from "../ItemDetail/ItemDetail";
-import { useParams } from "react-router-dom";
+import './ItemDetailContainer.css'
+import { useState, useEffect } from 'react'
+import ItemDetail from '../ItemDetail/ItemDetail'
+import { useParams } from 'react-router-dom'
+import { firestoreDb } from '../../services/firebase'
+import {getDoc, doc} from 'firebase/firestore'
 
-const ItemDetailContainer = ({ addToCart, cart }) => {
-  const [product, setProduct] = useState();
-  const [loading, setLoading] = useState(true);
+const ItemDetailContainer = ({addToCart, cart}) => {
+    const [product, setProduct] = useState()
+    const [loading, setLoading] = useState(true)
 
-  const { productId } = useParams();
+    const { productId } = useParams()
 
-  useEffect(() => {
-    setLoading(true);
+    useEffect(() => {
+        setLoading(true)
 
-    getProductById(productId)
-      .then((prod) => {
-        setProduct(prod);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [productId]);
+const docRef = doc(firestoreDb, 'products', productId)
 
-  if (loading) {
-    return <h1 className="sub">Cargando...</h1>;
-  }
+        getDoc(docRef).then(querySnapshot => {
+            const product = { id: querySnapshot.id, ...querySnapshot.data() }
+            setProduct(product)
+        }).catch(error => {
+            console.log(error)
+        }).finally(() => {
+            setLoading(false)
+        })
 
-  return (
-    <div className="Item">
-      <ItemDetail {...product} addToCart={addToCart} cart={cart} />
-    </div>
-  );
-};
+    }, [productId])
+    
 
-export default ItemDetailContainer;
+    if(loading) {
+        return <h1 className='sub' >Cargando...</h1>
+    }
+
+    return(
+        <div className='ItemDetailContainer'>
+            <ItemDetail {...product} addToCart={addToCart} cart={cart}/>
+        </div>
+    )
+}
+
+export default ItemDetailContainer
