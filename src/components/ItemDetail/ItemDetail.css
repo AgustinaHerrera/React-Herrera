@@ -1,35 +1,43 @@
-
 .ContainerItem {
-    font-family: "Montserrat", sans-serif;
-    font-weight: bold;
+    width: 700px;
+    height: 260px;
+    padding: 30px;
+    margin: 30px;
+    font-size: 10px;
+    background-color: #bfc3cc;
+    border-radius: 5px;
+    margin: auto;
+    margin-top: 10px;
     color: white;
     text-align: center;
-  width: 280px;
-  height: auto;
-  background-color: #bfc3cc;
-  border-radius: 5px; 
-  position: absolute;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: 16px;
+}
 
-  }
-  
-
-  
-.ItemHeader {
-    display: flex;
-    justify-content: center;
+.titulo {
+    font-size: 40px;
+    margin-top: 10px;
+    margin-right: 50px;
+    display: block;
+    float: right;
 }
 
 .Info {
-    font-size: 12px;
-    display: flex;
-    justify-content: space-around;
+    display: block;
+    float: right;
+    margin-right: 100px;
 }
 
-
-.ItemImg {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    object-position: center;
+.imagen{
+    width: 260px;
+    height: auto;
+    display: block;
+    float: left;
 }
 
+.footer{
+    display: block;
+    float: right;
+    margin-right: 30px;
+}
