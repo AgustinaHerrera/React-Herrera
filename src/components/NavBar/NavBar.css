@@ -49,8 +49,18 @@ letter-spacing: 0.15em;
 display: block;
 margin: 10px 5px;
 padding: 20px;
-
 }
+
+.sub2 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  color: #c58190;
+  font-size: 2em;
+  text-align: center;
+  display: block;
+  margin: 10px 5px;
+  padding: 20px;
+  }
 
 .btn, .Option {
 background-color: #bfc3cc;
@@ -101,7 +111,7 @@ margin: auto;
 .text {
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
-  color: #c58190;
+  color: black;
   margin: 20px;
 }
 

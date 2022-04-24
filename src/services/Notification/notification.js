@@ -1,7 +1,7 @@
 import './notification.css'
 import { useState, createContext, useContext } from 'react'
 
-const Notification = ({ message, severity}) => {
+const Notification = ({ message}) => {
 
     const notificationStyles = {
       position: 'absolute',
@@ -36,29 +36,26 @@ const Notification = ({ message, severity}) => {
 
 const NotificationContext = createContext()
 
-export const NotificationProvider = ({children}) => {
+export const NotificationServicesProvider = ({children}) => {
     const [message, setMessage] = useState('')
-    const [severity, setSeverity] = useState('Success')
-    const [otherClass, setOtherClass] = useState()
+    const [severity, setSeverity] = useState('')
 
-    const setNotification = (sev, msg, cls) => {
-        setMessage(msg)
-        setSeverity(sev)
-        setOtherClass(cls)
+    const setNotification = (severity, message) => {
+        setMessage(message)
+        setSeverity(severity)
         setTimeout(() => {
             setMessage('')
-        }, 3000)
+        }, 5000)
     }
 
     return (
-        <NotificationContext.Provider value={{setNotification}}>
-            <Notification message={message} severity={severity} otherClass={otherClass}/>
+        <NotificationContext.Provider value={setNotification}>
+            <Notification message={message} severity={severity}/>
             {children}
         </NotificationContext.Provider>
     )
-
 }
 
-export const useNotification = () => {
+export const useNotificationServices = () => {
     return useContext(NotificationContext)
 }

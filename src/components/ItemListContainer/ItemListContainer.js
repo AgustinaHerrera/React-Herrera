@@ -38,7 +38,7 @@ const ItemListContainer = () => {
 
     
     return (
-        <div className="ItemListContainer" onClick={() => console.log('Hice click en ItemListContainer')}>
+        <div className="ItemListContainer">
             {
                 loading ? 
                     <h1 className='sub' >Cargando...</h1> :  
