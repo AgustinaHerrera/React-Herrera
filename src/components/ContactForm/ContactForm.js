@@ -30,7 +30,7 @@ const ContactForm = ({ toggleVisibility, setContact }) => {
           <form className='ContactForm' onSubmit={handleContactForm}>
             <label className='LabelContact text'>Nombre:
               <input
-                className='InputContact'
+                className='InputContact text'
                 type='text'
                 value={name}
                 onChange={({ target }) => setName(target.value)}

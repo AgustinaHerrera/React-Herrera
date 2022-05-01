@@ -4,10 +4,6 @@ import { useState, createContext, useContext } from 'react'
 const Notification = ({ message}) => {
 
     const notificationStyles = {
-      position: 'absolute',
-      top: 100,
-      right: 5,
-      display: 'flex',
       justifyContext: 'center',
       alignItems: 'center',
       width: 'auto',
