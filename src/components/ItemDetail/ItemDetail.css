@@ -1,6 +1,6 @@
 .ContainerItem {
     width: 700px;
-    height: 260px;
+    height: 300px;
     padding: 30px;
     margin: 30px;
     font-size: 10px;
@@ -17,16 +17,12 @@
 
 .titulo {
     font-size: 40px;
-    margin-top: 10px;
     margin-right: 50px;
-    display: block;
-    float: right;
+    display: inline;
 }
 
 .Info {
     display: block;
-    float: right;
-    margin-right: 100px;
 }
 
 .imagen{
@@ -34,10 +30,9 @@
     height: auto;
     display: block;
     float: left;
+    margin-top: 10px;
 }
 
 .footer{
     display: block;
-    float: right;
-    margin-right: 30px;
 }

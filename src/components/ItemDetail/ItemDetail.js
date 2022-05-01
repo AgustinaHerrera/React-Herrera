@@ -5,43 +5,59 @@ import './ItemDetail.css'
 import CartContext from '../../context/CartContext'
 import { useNotificationServices } from '../../services/Notification/notification'
 
-const ItemDetail = ({ id, name, img, category, price, stock}) => {
+const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
     const [quantity, setQuantity] = useState(0)
 
     const { addItem } = useContext(CartContext)
-    const { setNotificationServices } = useNotificationServices()
 
-    const handleOnAdd = (count) => {
-        setQuantity(count)
-        addItem({ id, name, price}, count)
-        setNotificationServices('success', 'Se agregaron correctamente los productos al carrito')
+    const setNotification = useNotificationServices()
+
+    const handleOnAdd = (quantity) => {
+        setQuantity(quantity)
+
+        const productToAdd = {
+            id,
+            name,
+            price,
+            img,
+            category,
+            description,
+            stock
+        }
+
+        addItem(productToAdd, quantity)
+        setNotification('success',`Se agrego ${name} al carrito`)
     }
-        
-
+ 
     return (
-        <div className="ContainerItem">
+        <article className="ContainerItem">
             <header >
                 <h2 className="titulo">
                     {name}
                 </h2>
             </header>
-            <picture >
-                <img src={img} alt={name} className="imagen" />
+            <picture>
+                <img src={img} alt={name} className="imagen"/>
             </picture>
-            <section className='Info'>
-                <p>
+            <section className="Info">
+                <p >
                     Categoria: {category}
                 </p>
-        
-                <p>
+                <p >
+                    Descripción: {description}
+                </p>
+                <p >
                     Precio: {price}
                 </p>
             </section>           
             <footer className='footer'>
-                {quantity === 0 ? <ItemCount onAdd={handleOnAdd}/> : <Link to='/cart' className='btn2'>Ir al carrito</Link>}
-                
+                {
+                    quantity > 0 ? 
+                        <Link to={'/cart'} className='Option'>Ir al carrito de compras</Link> :
+                        <ItemCount initial={1} stock={stock} onAdd={handleOnAdd} />
+                } 
             </footer>
-        </div>
+        </article>
     )
 }
 
