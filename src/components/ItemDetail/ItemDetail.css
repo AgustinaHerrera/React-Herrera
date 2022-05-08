@@ -15,7 +15,7 @@
     font-size: 16px;
 }
 
-.titulo {
+.Title{
     font-size: 40px;
     margin-right: 50px;
     display: inline;
@@ -25,7 +25,7 @@
     display: block;
 }
 
-.imagen{
+.Image{
     width: 260px;
     height: auto;
     display: block;
@@ -33,6 +33,29 @@
     margin-top: 10px;
 }
 
-.footer{
+.Footer{
     display: block;
 }
+
+.Button{
+    background-color: #bfc3cc;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bolder;
+    letter-spacing: 1px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin: 3px;
+    padding: 4px 25px 4px 25px;
+    width: 20%;
+    height: auto;
+    
+    }
+    
+    .Button:hover {
+    transition: all 0.2s;
+    background-color: #c58190;
+    }

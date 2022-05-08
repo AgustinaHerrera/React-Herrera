@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import ItemCount from '../ItemCount/ItemCount'
 import './ItemDetail.css'
 import CartContext from '../../context/CartContext'
-import { useNotificationServices } from '../../services/Notification/notification'
+import { useNotificationServices } from '../../Notification/notification'
 
 const ItemDetail = ({ id, name, img, category, Description, price, stock }) => {
     const [quantity, setQuantity] = useState(0)
@@ -32,12 +32,12 @@ const ItemDetail = ({ id, name, img, category, Description, price, stock }) => {
     return (
         <article className="ContainerItem">
             <header >
-                <h2 className="titulo">
+                <h2 className="Title">
                     {name}
                 </h2>
             </header>
             <picture>
-                <img src={img} alt={name} className="imagen"/>
+                <img src={img} alt={name} className="Image"/>
             </picture>
             <section className="Info">
                 <p >

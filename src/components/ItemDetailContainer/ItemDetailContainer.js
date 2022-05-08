@@ -1,39 +1,38 @@
-import './ItemDetailContainer.css'
-import { useState, useEffect } from 'react'
-import ItemDetail from '../ItemDetail/ItemDetail'
-import { useParams } from 'react-router-dom'
-import { getProductById } from '../../services/firebase/firestore'
+import { useState, useEffect } from "react";
+import ItemDetail from "../ItemDetail/ItemDetail";
+import { useParams } from "react-router-dom";
+import { getProductById } from "../../services/firebase/firestore";
 
+const ItemDetailContainer = ({ addToCart, cart }) => {
+  const [product, setProduct] = useState();
+  const [loading, setLoading] = useState(true);
 
-const ItemDetailContainer = ({addToCart, cart}) => {
-    const [product, setProduct] = useState()
-    const [loading, setLoading] = useState(true)
+  const { productId } = useParams();
 
-    const { productId } = useParams()
+  useEffect(() => {
+    setLoading(true);
 
-    useEffect(() => {
-        setLoading(true)
+    getProductById(productId)
+      .then((prod) => {
+        setProduct(prod);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [productId]);
 
-        getProductById(productId).then(prod => {
-            setProduct(prod)
-        }).catch(error => {
-            console.log(error)
-        }).finally(() => {
-            setLoading(false)
-        })
-        
-    }, [productId])
-    
+  if (loading) {
+    return <h1 className="Sub">Cargando...</h1>;
+  }
 
-    if(loading) {
-        return <h1>Cargando...</h1>
-    }
+  return (
+    <div className="ItemDetailContainer">
+      <ItemDetail {...product} addToCart={addToCart} cart={cart} />
+    </div>
+  );
+};
 
-    return(
-        <div className='ItemDetailContainer'>
-            <ItemDetail {...product} addToCart={addToCart} cart={cart}/>
-        </div>
-    )
-}
-
-export default ItemDetailContainer
+export default ItemDetailContainer;

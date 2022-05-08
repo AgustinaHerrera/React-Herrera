@@ -8,12 +8,12 @@ const Item = ({ id, name, img, price }) => {
         <h2>{name}</h2>
       </header>
       <picture>
-        <img src={img} alt={name} className="itemImg" />
+        <img src={img} alt={name} className="ItemImg" />
       </picture>
       <section>
         <h3>Precio: ${price}</h3>
       </section>
-      <footer className="text">
+      <footer className="Text">
         <Link to={`/detail/${id}`} className="Option">
           Ver detalle
         </Link>

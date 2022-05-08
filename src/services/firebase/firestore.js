@@ -1,4 +1,4 @@
-import { getDocs,  collection,  query, where, limit,  doc, getDoc,  writeBatch,  documentId, addDoc,Timestamp } from 'firebase/firestore' 
+import { getDocs,  collection,  query, where, limit,  doc, getDoc,  writeBatch,  documentId, addDoc, Timestamp } from 'firebase/firestore' 
 import { firestoreDb } from './index'
 import { createAdaptedProduct } from '../../adapters/productAdapter'
 import { createAdaptedCategory } from '../../adapters/categoryAdapter'
@@ -28,13 +28,13 @@ export const getProductById = (productId) => {
             const product = createAdaptedProduct(querySnapshot)
             resolve(product)
         }).catch(error => {
-            reject(error)
+            resolve(error)
         })
     })
 }
 
-export const createOrderAndUpdateStock = (cart, objOrder) => {
-    return new Promise((resolve, reject) => {
+export const createOrderAndUpdateStock = (products, objOrder) => {
+    return new Promise((resolve) => {
 
         const objOrderWithTimestamp = {
             ...objOrder,
@@ -44,27 +44,31 @@ export const createOrderAndUpdateStock = (cart, objOrder) => {
         const batch = writeBatch(firestoreDb)
         const outOfStock = []
 
-        const ids = cart.map(prod => prod.id)
-        const collectionRef = collection(firestoreDb, 'products') 
+        const ids = products.map(prod => prod.id);
 
-        getDocs(query(collectionRef, where(documentId(), 'in', ids)))
-            .then(response => {
-                response.docs.forEach(doc => {
-                    const dataDoc = doc.data()
-                    const prodQuantity = objOrder.items.find(prod => prod.id === doc.id).quantity
+        const collectionRef = collection (firestoreDb, 'products')
 
-                    if(dataDoc.stock >= prodQuantity) {
-                        batch.update(doc.ref, { stock: dataDoc.stock - prodQuantity})
-                    } else {
-                        outOfStock.push({ id: doc.id, dataDoc})
-                    }
-                })
-            }).then(() => {
+        getDocs (query(collectionRef, where(documentId(), 'in', ids)))
+            .then((response) => {
+              response.docs.forEach((docSnapshot) => {
+                if (docSnapshot.data().stock >=
+                  objOrder.items.find((prod) => prod.id === docSnapshot.id).quantity
+                ) {
+                  batch.update(docSnapshot.ref, {
+                    stock:
+                      docSnapshot.data().stock -
+                      objOrder.items.find((prod) => prod.id === docSnapshot.id)
+                        .quantity,
+                  });
+                } else {
+                  outOfStock.push({ id: docSnapshot.id, ...docSnapshot.data() });
+                }
+              });
+            })
+            .then(() => {
                 if(outOfStock.length === 0) {
                     const collectionRef = collection(firestoreDb, 'orders')
                     return addDoc(collectionRef, objOrderWithTimestamp)
-                } else {
-                    return Promise.reject({ name: 'outOfStockError', products: outOfStock})
                 }
             }).then(({ id }) => {
                 batch.commit()
@@ -72,8 +76,9 @@ export const createOrderAndUpdateStock = (cart, objOrder) => {
             }).catch(error => {
                 resolve(error)
             })
-    })
-}
+    }
+)}
+
 
 export const getCategories = () => {
     return new Promise((resolve, reject) => {
