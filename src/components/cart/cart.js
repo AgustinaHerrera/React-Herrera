@@ -36,11 +36,12 @@ const Cart = () => {
         total: getTotal()
       };
 
-    createOrderAndUpdateStock (products, objOrder).then (id =>{
+    createOrderAndUpdateStock (objOrder).then (id =>{
       clearCart()
       setNotification( 'success', `La orden se genero exitosamente, su numero de orden es: ${id}`)
     }).catch((error) => {
-      setNotification("error",`El producto que seleccionó no tiene stock` ,error);
+      if (error && error.name === 'outOfStockError' && error.products.length > 0) {
+      setNotification("error",`El producto que seleccionó no tiene stock` ,error);}
     })
     .finally(() => {
       setProcessingOrder(false);
@@ -72,7 +73,7 @@ const Cart = () => {
       <button onClick={() => clearCart()} className="Button">
         Cancelar compra
       </button>
-      <button onClick={() => confirmOrder()} className="Button">
+      <button onClick={confirmOrder} className="Button">
         Confirmar Compra
       </button>
       {contact.phone !== "" &&

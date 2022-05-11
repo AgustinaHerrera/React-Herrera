@@ -5,7 +5,7 @@ import './ItemDetail.css'
 import CartContext from '../../context/CartContext'
 import { useNotificationServices } from '../../Notification/notification'
 
-const ItemDetail = ({ id, name, img, category, Description, price, stock }) => {
+const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
     const [quantity, setQuantity] = useState(0)
 
     const { addItem } = useContext(CartContext)
@@ -21,7 +21,7 @@ const ItemDetail = ({ id, name, img, category, Description, price, stock }) => {
             price,
             img,
             category,
-            Description,
+            description,
             stock
         }
 
@@ -44,10 +44,10 @@ const ItemDetail = ({ id, name, img, category, Description, price, stock }) => {
                     Categoria: {category}
                 </p>
                 <p >
-                    Descripción: {Description}
+                    Descripción: {description}
                 </p>
                 <p >
-                    Precio: {price}
+                    Precio: ${price}
                 </p>
             </section>           
             <footer className='footer'>
